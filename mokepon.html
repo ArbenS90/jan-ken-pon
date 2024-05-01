@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Meme Batle!</title>
+  <script src="./js/mokepon.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <section id="seleccionar-meme">
+    <h1 class="titulo">Batalla de Memes clasicos</h1>
+    <h2 class="subtitulo" >Con cual meme te identificas hoy?</h2>
+    <div class="contenedor">
+      <input type="radio" name="memes" id="yaoming" />
+      <label class="meme" for="yaoming">
+        <p>Yao Ming</p>
+        <img src="/img/yaoming.png" alt="yaoming">
+      </label>
+
+      <input type="radio" name="memes" id="trollface" />
+      <label class="meme" for="trollface">
+        <p>Troll Face</p>
+        <img src="/img/TrollFace.png" alt="trollface">
+      </label>
+
+      <input type="radio" name="memes" id="megusta" />
+      <label class="meme" for="megusta">
+        <p>Me Gusta</p>
+        <img src="/img/megusta.png" alt="megusta">
+      </label>
+    </div>
+
+    <button id="boton-meme">Seleccionar</button>
+
+  </section>
+
+  <section id="seleccionar-ataque">
+    <h1 class="titulo">Batalla de Memes clasicos</h1>
+    <h2 class="subtitulo">Selecciona tu meme ataque!</h2>
+  
+    <div>
+      <button class="boton-ataque" id="boton-yaoming">Ser Yao</button>
+      <button class="boton-ataque" id="boton-trollface">Trolear</button>
+      <button class="boton-ataque" id="boton-megusta">I like it</button>
+    </div>  
+  
+    <div>
+      <section id="mensajes">
+      </section>
+  
+      <section id="reiniciar">
+        <button id="boton-reiniciar">Reiniciar</button>
+      </section>
+
+    </div>
+    
+    <div>
+      <p>Tu meme <span id="meme-jugador"> </span> tiene </span> <span id="vida-meme">3</span> vidas</p>
+      <p>El meme <span id="meme-enemigo"> </span> del enemigo tiene <span id="vida-meme-enemigo">3</span> vidas
+      </p>
+    </div>
+  </section>
+</body>
+
+</html>

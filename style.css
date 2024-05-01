@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
+body {
+  font-family: 'Architects Daughter', cursive;
+  background-color: #EEEEEE;
+}
+
+#seleccionar-meme {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titulo {
+font-size: 40px;
+color: #222831;
+}
+
+.subtitulo {
+  font-size: 24px;
+  color: #00ADB5;
+}
+
+.contenedor{
+  display: flex;
+  height: 200px;
+  width: 700px;
+
+}
+
+.meme {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 200px;
+  background-color: #393E46;
+  color: #EEEEEE;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid aliceblue;
+  border-radius: 5px;
+}
+
+.contenedor img {
+  width: 100px;
+
+}
+
+input {
+  display: none;
+
+}
+
+input:checked + .meme {
+  background-color: #04364A;
+}
+
+#boton-meme{
+  width: 180px;
+  height: 30px;
+  background-color: #00ADB5;
+  color: #EEEEEE;
+  border: none;
+  padding: 10px;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.meme:hover {
+  background-color: #00ADB5;
+  cursor: pointer;
+}
+
+#boton-meme:hover {
+  background-color: #393E46;
+  color: #EEEEEE;
+  cursor: pointer;
+}
+
+#seleccionar-ataque{
+  flex-direction: column;
+  align-items: center;
+}
+
+.boton-ataque{
+  width: 100px;
+  height: 50px;
+  background-color: #393E46;
+  color: #EEEEEE;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid aliceblue;
+  border-radius: 5px;
+  font-family: 'Architects Daughter', cursive;
+}
