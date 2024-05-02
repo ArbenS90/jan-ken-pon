@@ -2,7 +2,7 @@
 
 body {
   font-family: 'Architects Daughter', cursive;
-  background-color: #EEEEEE;
+  background-color: #f5f5f5;
 }
 
 #seleccionar-pj {
@@ -19,13 +19,13 @@ color: #222831;
 
 .subtitulo {
   font-size: 24px;
-  color: #00ADB5;
+  color: #39517c;
 }
 
 .contenedor{
   display: flex;
   height: 200px;
-  width: 700px;
+  width: 600px;
 
 }
 
@@ -36,8 +36,8 @@ color: #222831;
   align-items: center;
   width: 400px;
   height: 200px;
-  background-color: #393E46;
-  color: #EEEEEE;
+  background-color: #49689b;
+  color: #000000;
   box-sizing: border-box;
   padding: 10px;
   margin: 10px;
@@ -56,14 +56,14 @@ input {
 }
 
 input:checked + .pj {
-  background-color: #04364A;
+  background-color: #5f7a92;
 }
 
 #boton-pj{
   width: 180px;
   height: 30px;
-  background-color: #00ADB5;
-  color: #EEEEEE;
+  background-color: #49689b;
+  color: #000000;
   border: none;
   padding: 10px;
   margin: 20px;
@@ -74,13 +74,13 @@ input:checked + .pj {
 }
 
 .pj:hover {
-  background-color: #00ADB5;
+  background-color: #86a2cf;
   cursor: pointer;
 }
 
 #boton-pj:hover {
-  background-color: #393E46;
-  color: #EEEEEE;
+  background-color: #86a2cf;
+  color: #000000;
   cursor: pointer;
 }
 
@@ -100,4 +100,22 @@ input:checked + .pj {
   border: 1px solid aliceblue;
   border-radius: 5px;
   font-family: 'Architects Daughter', cursive;
+}
+
+#mensajes {
+  display: flex;
+  width: 200px;
+  background: #dedede;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 20px;
+  align-items: center;
+  flex-direction: column;
+}
+
+#boton-reiniciar {
+  border: transparent;
+  color: #39517c;
+  font-family: 'Architects Daughter', cursive;
+  font-weight: bold;
 }

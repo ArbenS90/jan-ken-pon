@@ -114,23 +114,36 @@ function Duelo() {
 
 function vidasPjs(){
     if (vidasPj == 0){
-        resultadoFinal(alert('Perdiste!!'))
+        resultadoFinal('Haz Perdido!!')
     }else if (vidasPjEnemigo == 0){ 
-        resultadoFinal(alert('Ganaste!!'))
+        resultadoFinal('Haz Ganado!!')
     }
 
 }
 
 function crearMensaje(resultado) {
 
-    let sectionMensajes = document.getElementById('mensajes')
-    
-    let parrafo = document.createElement('p')
-    parrafo.innerHTML = 'Tu personaje uso: ' + ataqueJugador + ', el personaje del enemigo uso: ' + ataqueEnemigo + ' - ' + resultado
+    let sectionMensajes = document.getElementById('resultado')
+    let ataquePj = document.getElementById('ataque-Pj')
+    let ataquesPjEnemigo = document.getElementById('ataques-Pj-Enemigo')
 
-    sectionMensajes.appendChild(parrafo)
+    let nuevoAtaquePj = document.createElement('p')
+    let nuevoAtaquePjEnemigo = document.createElement('p')
+
+    sectionMensajes.innerHTML = resultado
+    nuevoAtaquePj.innerHTML = ataqueJugador
+    nuevoAtaquePjEnemigo.innerHTML = ataqueJugador
+    
+    ataquePj.appendChild(nuevoAtaquePj)
+    ataquesPjEnemigo.appendChild(nuevoAtaquePjEnemigo)
 }
  function resultadoFinal(final) {
+
+    let sectionMensajes = document.getElementById('resultado')
+
+    let parrafo = document.createElement( 'p' )
+    sectionMensajes.innerHTML = final
+
     let sectionReiniciar = document.getElementById('reiniciar')
     sectionReiniciar.style.display = 'block'
 
