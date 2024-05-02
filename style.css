@@ -5,7 +5,7 @@ body {
   background-color: #EEEEEE;
 }
 
-#seleccionar-meme {
+#seleccionar-pj {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,7 +29,7 @@ color: #222831;
 
 }
 
-.meme {
+.pj {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -55,11 +55,11 @@ input {
 
 }
 
-input:checked + .meme {
+input:checked + .pj {
   background-color: #04364A;
 }
 
-#boton-meme{
+#boton-pj{
   width: 180px;
   height: 30px;
   background-color: #00ADB5;
@@ -73,12 +73,12 @@ input:checked + .meme {
   border-radius: 5px;
 }
 
-.meme:hover {
+.pj:hover {
   background-color: #00ADB5;
   cursor: pointer;
 }
 
-#boton-meme:hover {
+#boton-pj:hover {
   background-color: #393E46;
   color: #EEEEEE;
   cursor: pointer;

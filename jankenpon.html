@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Jan-Ken-Pon</title>
+  <script src="./js/jankenpon.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <section id="seleccionar-pj">
+    <h1 class="titulo">El clasico juego de "Piedra - Papel - Tijeras" (Jan-Ken-Pon)</h1>
+    <h2 class="subtitulo" >Seleccione su personaje!</h2>
+    <div class="contenedor">
+      <input type="radio" name="personajes" id="don-ovidio" />
+      <label class="pj" for="don-ovidio">
+        <p>Don Ovidio</p>
+        <img src="/img/don-ovidio.png" alt="don-ovidio">
+      </label>
+
+      <input type="radio" name="personajes" id="conrado-horacio" />
+      <label class="pj" for="conrado-horacio">
+        <p>Conrado Horacio</p>
+        <img src="/img/conrado-horacio.png" alt="conrado-horacio">
+      </label>
+
+      <input type="radio" name="personajes" id="clara-elvira" />
+      <label class="pj" for="clara-elvira">
+        <p>Clara Elvira</p>
+        <img src="/img/clara-elvira.png" alt="clara-elvira">
+      </label>
+    </div>
+
+    <button id="boton-pj">Seleccionar</button>
+
+  </section>
+
+  <section id="seleccionar-ataque">
+    <h1 class="titulo">El grandioso Piedra - Papel - Tijeras (Jan-Ken-Pon)</h1>
+    <h2 class="subtitulo">Elige Sabiamente!</h2>
+  
+    <div>
+      <button class="boton-ataque" id="boton-piedra">Piedra</button>
+      <button class="boton-ataque" id="boton-papel">Papel</button>
+      <button class="boton-ataque" id="boton-tijera">Tijeras</button>
+    </div>  
+  
+    <div>
+      <section id="mensajes">
+      </section>
+  
+      <section id="reiniciar">
+        <button id="boton-reiniciar">Reiniciar</button>
+      </section>
+
+    </div>
+    
+    <div>
+      <p>Tu pj <span id="pj-jugador"> </span> tiene </span> <span id="vida-pj">3</span> vidas</p>
+      <p>El pj <span id="pj-enemigo"> </span> del enemigo tiene <span id="vida-pj-enemigo">3</span> vidas
+      </p>
+    </div>
+  </section>
+</body>
+
+</html>
