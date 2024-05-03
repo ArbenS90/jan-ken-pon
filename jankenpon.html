@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jan-Ken-Pon</title>
   <script src="./js/jankenpon.js"></script>
   <link rel="stylesheet" href="style.css">
@@ -11,7 +12,7 @@
 <body>
 
   <section id="seleccionar-pj">
-    <h1 class="titulo">El clasico juego de "Piedra - Papel - Tijeras" (Jan-Ken-Pon)</h1>
+    <h1 class="titulo">Juega a "Piedra - Papel - Tijeras" (Jan-Ken-Pon)</h1>
     <h2 class="subtitulo" >Seleccione su personaje!</h2>
     <div class="contenedor">
       <input type="radio" name="personajes" id="don-ovidio" />
@@ -35,13 +36,13 @@
 
     <button id="boton-pj">Seleccionar</button>
 
-  </section>
+  </section>|
 
   <section id="seleccionar-ataque">
     <h1 class="titulo">El grandioso Piedra - Papel - Tijeras (Jan-Ken-Pon)</h1>
     <h2 class="subtitulo">Elige Sabiamente!</h2>
   
-    <div>
+    <div class="ataques">
       <button class="boton-ataque" id="boton-piedra">Piedra</button>
       <button class="boton-ataque" id="boton-papel">Papel</button>
       <button class="boton-ataque" id="boton-tijera">Tijeras</button>
@@ -56,12 +57,19 @@
         </section>
       </div>
     
-    <div>
-      <div id="ataque-Pj"></div>
-      <div id="ataques-Pj-Enemigo"></div>
-      <p>Tu pj <span id="pj-jugador"> </span> tiene </span> <span id="vida-pj">3</span> vidas</p>
-      <p>El pj <span id="pj-enemigo"> </span> del enemigo tiene <span id="vida-pj-enemigo">3</span> vidas
-      </p>
+    <div class="batalla">
+      <div class="batalla-pj">
+        <p id="pj-jugador"> </p>
+        <p id="vida-pj">3 vidas</p>
+        <div id="ataque-Pj"></div>
+      </div>
+
+      <div class="batalla-enemigo">
+        <p id="pj-enemigo"> </p>
+        <p id="vida-pj-enemigo">3 vidas</p>
+        <div id="ataque-Pj-enemigo"></div>
+      </div>
+      
     </div>
   </section>
 </body>

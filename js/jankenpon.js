@@ -137,7 +137,7 @@ function crearMensaje(resultado) {
     ataquePj.appendChild(nuevoAtaquePj)
     ataquesPjEnemigo.appendChild(nuevoAtaquePjEnemigo)
 }
- function resultadoFinal(final) {
+function resultadoFinal(final) {
 
     let sectionMensajes = document.getElementById('resultado')
 
