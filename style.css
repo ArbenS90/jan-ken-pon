@@ -67,9 +67,27 @@ color: #222831;
   cursor: pointer;
 }
 
+#pj-jugador{
+width: 150px;
+font-size: larger;
+font-weight: bold;
+align-items: center;
+}
+
+#pj-enemigo{
+  width: 150px;
+  font-size: larger;
+  font-weight: bold;
+
+  }
+
 #boton-pj:hover {
   background-color: #86a2cf;
   color: #000000;
+  cursor: pointer;
+}
+.boton-ataque:hover{
+  background: #86a2cf;
   cursor: pointer;
 }
 
@@ -110,6 +128,8 @@ input:checked + .pj {
   border-radius: 20px;
   align-items: center;
   flex-direction: column;
+  font-size: large;
+  font-weight: 800;
 }
 
 #boton-reiniciar {
@@ -117,17 +137,42 @@ input:checked + .pj {
   color: #39517c;
   font-family: 'Architects Daughter', cursive;
   font-weight: bold;
+  font-size: larger;
+  border-radius: 5px;
+}
+#boton-reiniciar:hover {
+  background-color: #86a2cf;
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 .batalla {
   display: grid;
-  grid-template-columns: 100px 100px;
+  grid-template-columns: 200px 200px;
+  gap: 50px;
 }
 
-.batalla-pj, .batalla-enemigo{
+.batalla-pj{
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+#vida-pj{
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
+}
+
+#vida-pj-enemigo{
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
+}
+
+.batalla-enemigo{
+  display: flex;
+  flex-direction: column;
+  align-items: end;
 }
 
 

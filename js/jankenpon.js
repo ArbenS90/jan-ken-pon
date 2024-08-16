@@ -34,19 +34,21 @@ function seleccionarPj() {
     let sectionSeleccionAtaques = document.getElementById('seleccionar-ataque')
     sectionSeleccionAtaques.style.display = 'flex'
 
-    let inputDonOvidio = document.getElementById('DonOvidio')
-    let inputConradoHoracio = document.getElementById('ConradoHoracio')
-    let inputClaraElvira = document.getElementById('ClaraElvira')
+    let inputDonOvidio = document.getElementById('don-ovidio')
+    let inputConradoHoracio = document.getElementById('conrado-horacio')
+    let inputClaraElvira = document.getElementById('clara-elvira')
     let spanPjJugador = document.getElementById('pj-jugador')
+
     
     if (inputDonOvidio.checked) {
-        spanPjJugador.innerHTML = 'DonOvidio'
+        spanPjJugador.innerHTML = 'don-ovidio'
     } else if (inputConradoHoracio.checked) {
-        spanPjJugador.innerHTML = 'ConradoHoracio'
+        spanPjJugador.innerHTML = 'conrado-horacio'
     } else if (inputClaraElvira.checked) {
-        spanPjJugador.innerHTML = 'ClaraElvira'
+        spanPjJugador.innerHTML = 'clara-elvira'
     } else {
         alert('Seleccione un Personaje')
+        return;
     }
 
     seleccionarPjEnemigo()
@@ -55,14 +57,14 @@ function seleccionarPj() {
 
 function seleccionarPjEnemigo() {
     let pjAleatoria = aleatorio(1,3)
-    let spanPjEnemigo = document.getElementById('meme-enemigo')
+    let spanPjEnemigo = document.getElementById('pj-enemigo')
 
     if (pjAleatoria == 1) {
-        spanPjEnemigo.innerHTML = 'DonOvidio'
+        spanPjEnemigo.innerHTML = 'don-ovidio'
     } else if (pjAleatoria == 2) {
-        spanPjEnemigo.innerHTML = 'ConradoHoracio'
+        spanPjEnemigo.innerHTML = 'conrado-horacio'
     } else {
-        spanPjEnemigo.innerHTML = 'ClaraElvira'
+        spanPjEnemigo.innerHTML = 'clara-elvira'
     }
 }
 
@@ -90,24 +92,36 @@ function ataqueAleatorioEnemigo() {
         ataqueEnemigo = 'TIJERA'
     }
 
-    Duelo()    
+    Duelo() 
 }
 
 function Duelo() {
 
-    let spanpj = document.getElementById('vida-pj')
-    let spankPjEnemigo = document.getElementById('vida-pj-enemigo')
+    let spanVidasPj = document.getElementById('vida-pj')
+    let spanVidasEnemigo = document.getElementById('vida-pj-enemigo')
 
         if (ataqueJugador == ataqueEnemigo) {
             crearMensaje('EMPATARON')
-        } else if ((ataqueJugador == 'PAPEL' && ataqueEnemigo == 'PIEDRA') || (ataqueJugador == 'PIEDRA' && ataqueEnemigo == 'TIJERA') || (ataqueJugador == 'TIJERA' && ataqueEnemigo == 'PAPEL')) {
+        } else if ((ataqueJugador == 'PAPEL' && ataqueEnemigo == 'PIEDRA') ||
+                   (ataqueJugador == 'PIEDRA' && ataqueEnemigo == 'TIJERA') ||
+                   (ataqueJugador == 'TIJERA' && ataqueEnemigo == 'PAPEL')) {
             crearMensaje('GANASTE!')
             vidasPjEnemigo--
-            spankPjEnemigo.innerHTML = vidasPjEnemigo
+            if (vidasPjEnemigo == 1) {
+                spanVidasEnemigo.innerHTML = vidasPjEnemigo + " vida"
+            }else{
+                spanVidasEnemigo.innerHTML = vidasPjEnemigo + " vidas"
+            }
+            
         } else {
             crearMensaje('PERDISTE!')
             vidasPj--
-            spanpj.innerHTML = vidasPj
+            if (vidasPj == 1) {
+                spanVidasPj.innerHTML = vidasPj + " vida"
+            }else{
+                spanVidasPj.innerHTML = vidasPj + " vidas"
+            }
+            
         }
         vidasPjs()
 }
@@ -125,18 +139,19 @@ function crearMensaje(resultado) {
 
     let sectionMensajes = document.getElementById('resultado')
     let ataquePj = document.getElementById('ataque-Pj')
-    let ataquesPjEnemigo = document.getElementById('ataques-Pj-Enemigo')
+    let ataquePjEnemigo =  document.getElementById('ataque-Pj-enemigo')
 
     let nuevoAtaquePj = document.createElement('p')
     let nuevoAtaquePjEnemigo = document.createElement('p')
 
     sectionMensajes.innerHTML = resultado
-    nuevoAtaquePj.innerHTML = ataqueJugador
-    nuevoAtaquePjEnemigo.innerHTML = ataqueJugador
+    nuevoAtaquePj.innerHTML = "Usaste: " + ataqueJugador
+    nuevoAtaquePjEnemigo.innerHTML = "Uso: " + ataqueEnemigo
     
     ataquePj.appendChild(nuevoAtaquePj)
-    ataquesPjEnemigo.appendChild(nuevoAtaquePjEnemigo)
+    ataquePjEnemigo.appendChild(nuevoAtaquePjEnemigo)
 }
+
 function resultadoFinal(final) {
 
     let sectionMensajes = document.getElementById('resultado')
