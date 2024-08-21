@@ -1,82 +1,160 @@
+
+//variables iniciar juego
+const sectionSeleccionAtaques = document.getElementById('seleccionar-ataque')
+const botonPj = document.getElementById('boton-pj')
+const sectionReiniciar = document.getElementById('reiniciar')
+const botonOvidio = document.getElementById('boton-piedra')
+const botonConrado = document.getElementById('boton-papel')
+const botonElvira = document.getElementById('boton-tijera')
+const botonReiniciar = document.getElementById('boton-reiniciar')
+
+//variables seleccionar PJ
+const sectionSeleccionPj = document.getElementById('seleccionar-pj')
+const spanPjJugador = document.getElementById('pj-jugador')
+
+//variables seleccionar pj enemigo
+const spanPjEnemigo = document.getElementById('pj-enemigo')
+
+//variables duelo
+const spanVidasPj = document.getElementById('vida-pj')
+const spanVidasEnemigo = document.getElementById('vida-pj-enemigo')
+
+//variables funcion crear mensaje
+const sectionMensajes = document.getElementById('resultado')
+const ataquePj = document.getElementById('ataque-Pj')
+const ataquePjEnemigo =  document.getElementById('ataque-Pj-enemigo')
+
+//variables traidas desde html
+const contenedorTarjetas = document.getElementById('contenedorTarjetas')
+
+//variables resultado (final) 
+
+let personajes = []
 let ataqueJugador
 let ataqueEnemigo
 let resultado
 let vidasPj = 3
 let vidasPjEnemigo = 3
+//
+let opcionPjs
+let pjJugador
+let inputOvidio
+let inputConrado
+let inputElvira
+
+
+class Personaje {
+    constructor(nombre, foto, vida) {
+        this.nombre = nombre
+        this.foto = foto
+        this.vida = vida
+        this.ataques = []
+    }
+}
+
+let Ovidio = new Personaje('Ovidio', './img/don-ovidio.png', 3)
+let Conrado = new Personaje('Conrado', './img/conrado-horacio.png', 3)
+let Elvira = new Personaje('Elvira', '/img/clara-elvira.png', 3)
+
+//personajes.push(Ovidio,Conrado,Elvira)
+
+Ovidio.ataques.push(
+    { nombre: '🪨', id: 'boton-piedra'},
+    { nombre: '📜', id: 'boton-papel'},
+    { nombre: '✂️', id: 'boton-tijera'}
+)
+
+Conrado.ataques.push(
+    { nombre: '🪨', id: 'boton-piedra'},
+    { nombre: '📜', id: 'boton-papel'},
+    { nombre: '✂️', id: 'boton-tijera'}
+)
+
+Elvira.ataques.push(
+    { nombre: '🪨', id: 'boton-piedra'},
+    { nombre: '📜', id: 'boton-papel'},
+    { nombre: '✂️', id: 'boton-tijera'}
+)
+
+personajes.push(Ovidio,Conrado,Elvira)
 
 function iniciarJuego() {
-    let sectionSeleccionAtaques = document.getElementById('seleccionar-ataque')
+
     sectionSeleccionAtaques.style.display = 'none'
 
-    let botonPj = document.getElementById('boton-pj')
+    personajes.forEach((Personaje) => {
+        opcionPjs = `
+            <input type="radio" name="personajes" id= ${Personaje.nombre} />
+            <label class="pj" for= ${Personaje.nombre}>
+            <p>${Personaje.nombre}</p>
+            <img src=${Personaje.foto} alt= ${Personaje.nombre}>
+            </label>
+        `
+    contenedorTarjetas.innerHTML += opcionPjs
+
+        inputOvidio = document.getElementById('Ovidio')
+        inputConrado = document.getElementById('Conrado')
+        inputElvira = document.getElementById('Elvira')
+    })
+
     botonPj.addEventListener('click', seleccionarPj)
-
-    let sectionReiniciar = document.getElementById('reiniciar')
     sectionReiniciar.style.display = 'none'
-
-    let botonDonOvidio = document.getElementById('boton-piedra')
-    botonDonOvidio.addEventListener('click', ataqueDonOvidio)
-    let botonConradoHoracio = document.getElementById('boton-papel')
-    botonConradoHoracio.addEventListener('click', ataqueConradoHoracio)
-    let botonClaraElvira = document.getElementById('boton-tijera')
-    botonClaraElvira.addEventListener('click', ataqueClaraElvira)
-    
-    let botonReiniciar = document.getElementById('boton-reiniciar')
+    botonOvidio.addEventListener('click', ataqueOvidio)
+    botonConrado.addEventListener('click', ataqueConrado)
+    botonElvira.addEventListener('click', ataqueElvira)   
     botonReiniciar.addEventListener('click', reiniciarJuego)
-
 
 }
 
 function seleccionarPj() {
-    let sectionSeleccionPj = document.getElementById('seleccionar-pj')
-    sectionSeleccionPj.style.display = 'none'
 
-    let sectionSeleccionAtaques = document.getElementById('seleccionar-ataque')
+    sectionSeleccionPj.style.display = 'none'
     sectionSeleccionAtaques.style.display = 'flex'
 
-    let inputDonOvidio = document.getElementById('don-ovidio')
-    let inputConradoHoracio = document.getElementById('conrado-horacio')
-    let inputClaraElvira = document.getElementById('clara-elvira')
-    let spanPjJugador = document.getElementById('pj-jugador')
-
-    
-    if (inputDonOvidio.checked) {
-        spanPjJugador.innerHTML = 'don-ovidio'
-    } else if (inputConradoHoracio.checked) {
-        spanPjJugador.innerHTML = 'conrado-horacio'
-    } else if (inputClaraElvira.checked) {
-        spanPjJugador.innerHTML = 'clara-elvira'
+    if (inputOvidio.checked) {
+        spanPjJugador.innerHTML = inputOvidio.id
+        pjJugador = inputOvidio.id
+    } else if (inputConrado.checked) {
+        spanPjJugador.innerHTML = inputConrado.id
+        pjJugador = inputConrado.id
+    } else if (inputElvira.checked) {
+        spanPjJugador.innerHTML = inputElvira.id
+        pjJugador = inputElvira.id
     } else {
         alert('Seleccione un Personaje')
         return;
     }
-
+    extraerAtaques(pjJugador)
     seleccionarPjEnemigo()
+}
 
+function extraerAtaques(pjJugador){
+    let ataques
+    for (let i = 0; i < personajes.length; i++) {
+        if (pjJugador === personajes[i].nombre ) {
+            ataques = personajes[i].ataques
+        }
+        
+    }
+    mostrarAtaques(ataques)
 }
 
 function seleccionarPjEnemigo() {
-    let pjAleatoria = aleatorio(1,3)
-    let spanPjEnemigo = document.getElementById('pj-enemigo')
+    let pjAleatoria = aleatorio(0, personajes.length -1)
 
-    if (pjAleatoria == 1) {
-        spanPjEnemigo.innerHTML = 'don-ovidio'
-    } else if (pjAleatoria == 2) {
-        spanPjEnemigo.innerHTML = 'conrado-horacio'
-    } else {
-        spanPjEnemigo.innerHTML = 'clara-elvira'
-    }
+    spanPjEnemigo.innerHTML = personajes[pjAleatoria].nombre
+   
 }
 
-function ataqueDonOvidio() {
+function ataqueOvidio() {
     ataqueJugador = 'PIEDRA'
     ataqueAleatorioEnemigo()
 }
-function ataqueConradoHoracio() {
+function ataqueConrado() {
     ataqueJugador = 'PAPEL'
     ataqueAleatorioEnemigo()
 }
-function ataqueClaraElvira() {
+function ataqueElvira() {
     ataqueJugador = 'TIJERA'
     ataqueAleatorioEnemigo()
 }
@@ -96,9 +174,6 @@ function ataqueAleatorioEnemigo() {
 }
 
 function Duelo() {
-
-    let spanVidasPj = document.getElementById('vida-pj')
-    let spanVidasEnemigo = document.getElementById('vida-pj-enemigo')
 
         if (ataqueJugador == ataqueEnemigo) {
             crearMensaje('EMPATARON')
@@ -120,8 +195,7 @@ function Duelo() {
                 spanVidasPj.innerHTML = vidasPj + " vida"
             }else{
                 spanVidasPj.innerHTML = vidasPj + " vidas"
-            }
-            
+            }            
         }
         vidasPjs()
 }
@@ -137,10 +211,6 @@ function vidasPjs(){
 
 function crearMensaje(resultado) {
 
-    let sectionMensajes = document.getElementById('resultado')
-    let ataquePj = document.getElementById('ataque-Pj')
-    let ataquePjEnemigo =  document.getElementById('ataque-Pj-enemigo')
-
     let nuevoAtaquePj = document.createElement('p')
     let nuevoAtaquePjEnemigo = document.createElement('p')
 
@@ -154,20 +224,12 @@ function crearMensaje(resultado) {
 
 function resultadoFinal(final) {
 
-    let sectionMensajes = document.getElementById('resultado')
-
     let parrafo = document.createElement( 'p' )
     sectionMensajes.innerHTML = final
-
-    let sectionReiniciar = document.getElementById('reiniciar')
     sectionReiniciar.style.display = 'block'
-
-    let botonDonOvidio = document.getElementById('boton-piedra')    
-    botonDonOvidio.disabled = true
-    let botonConradoHoracio = document.getElementById('boton-papel')   
-    botonConradoHoracio.disabled = true
-    let botonClaraElvira = document.getElementById('boton-tijera')
-    botonClaraElvira.disabled = true
+    botonOvidio.disabled = true
+    botonConrado.disabled = true
+    botonElvira.disabled = true
     
 }
 

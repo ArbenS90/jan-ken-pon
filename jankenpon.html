@@ -5,33 +5,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jan-Ken-Pon</title>
-  <script src="./js/jankenpon.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <h1 class="titulo">Juega a "Piedra - Papel - Tijeras" (Jan-Ken-Pon)</h1>
+  <h2 class="subtitulo" >Seleccione su personaje!</h2>
 
   <section id="seleccionar-pj">
-    <h1 class="titulo">Juega a "Piedra - Papel - Tijeras" (Jan-Ken-Pon)</h1>
-    <h2 class="subtitulo" >Seleccione su personaje!</h2>
-    <div class="contenedor">
-      <input type="radio" name="personajes" id="don-ovidio" />
-      <label class="pj" for="don-ovidio">
-        <p>Don Ovidio</p>
-        <img src="/img/don-ovidio.png" alt="don-ovidio">
-      </label>
+    <div id='contenedorTarjetas' class="contenedor">
 
-      <input type="radio" name="personajes" id="conrado-horacio" />
-      <label class="pj" for="conrado-horacio">
-        <p>Conrado Horacio</p>
-        <img src="/img/conrado-horacio.png" alt="conrado-horacio">
-      </label>
-
-      <input type="radio" name="personajes" id="clara-elvira" />
-      <label class="pj" for="clara-elvira">
-        <p>Clara Elvira</p>
-        <img src="/img/clara-elvira.png" alt="clara-elvira">
-      </label>
     </div>
 
     <button id="boton-pj">Seleccionar</button>
@@ -72,6 +55,7 @@
       
     </div>
   </section>
+  <script src="./js/jankenpon.js"></script>
 </body>
 
 </html>
