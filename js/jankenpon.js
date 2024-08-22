@@ -29,7 +29,7 @@ const contenedorAtaques = document.getElementById('contenedorAtaques')
 //variables resultado (final) 
 
 let personajes = []
-let ataqueJugador
+let ataqueJugador = []
 let ataqueEnemigo
 let resultado
 let vidasPj = 3
@@ -44,6 +44,8 @@ let inputElvira
 let botonPiedra
 let botonPapel 
 let botonTijera
+let botones = []
+
 
 
 
@@ -56,9 +58,9 @@ class Personaje {
     }
 }
 
-let Ovidio = new Personaje('Ovidio', './img/don-ovidio.png', 3)
-let Conrado = new Personaje('Conrado', './img/conrado-horacio.png', 3)
-let Elvira = new Personaje('Elvira', '/img/clara-elvira.png', 3)
+let Ovidio = new Personaje('Don Ovidio', './img/don-ovidio.png', 3)
+let Conrado = new Personaje('Conrado Horacio', './img/conrado-horacio.png', 3)
+let Elvira = new Personaje('Clara Elvira', '/img/clara-elvira.png', 3)
 
 //personajes.push(Ovidio,Conrado,Elvira)
 
@@ -88,15 +90,15 @@ function iniciarJuego() {
 
     personajes.forEach((Personaje) => {
         opcionPjs = `
-            <input type="radio" name="personajes" id= ${Personaje.nombre} />
-            <label class="pj" for= ${Personaje.nombre}>
+            <input type="radio"  id= ${Personaje.nombre.replace(' ','')} name='${Personaje.nombre}' />
+            <label class="pj" for= ${Personaje.nombre.replace(' ','')}>
             <p>${Personaje.nombre}</p>
-            <img src=${Personaje.foto} alt= ${Personaje.nombre}>
+            <img src=${Personaje.foto} alt= ${Personaje.nombre.replace(' ','')}>
             </label>
         `
     contenedorTarjetas.innerHTML += opcionPjs
 
-        inputOvidio = document.getElementById('Ovidio')
+        inputOvidio = document.getElementById('DonOvidio')
         inputConrado = document.getElementById('Conrado')
         inputElvira = document.getElementById('Elvira')
     })
@@ -113,8 +115,8 @@ function seleccionarPj() {
     sectionSeleccionAtaques.style.display = 'flex'
 
     if (inputOvidio.checked) {
-        spanPjJugador.innerHTML = inputOvidio.id
-        pjJugador = inputOvidio.id
+        spanPjJugador.innerHTML = inputOvidio.name
+        pjJugador = inputOvidio.name
     } else if (inputConrado.checked) {
         spanPjJugador.innerHTML = inputConrado.id
         pjJugador = inputConrado.id
@@ -143,7 +145,7 @@ function extraerAtaques(pjJugador){
 function mostrarAtaques(ataques){
     ataques.forEach((ataque) => {
         ataquesPj = `
-            <button id=${ataque.id} class="boton-ataque" >${ataque.nombre}</button>
+            <button id=${ataque.id} class="boton-ataque btnAtaque" >${ataque.nombre}</button>
         `
 
         contenedorAtaques.innerHTML += ataquesPj
@@ -153,31 +155,38 @@ function mostrarAtaques(ataques){
     botonPapel = document.getElementById('boton-papel')
     botonTijera = document.getElementById('boton-tijera')
 
+    botones = document.querySelectorAll('.btnAtaque')
 
-    botonPiedra.addEventListener('click', ataquePiedra)
-    botonPapel.addEventListener('click', ataquePapel)
-    botonTijera.addEventListener('click', ataqueTijera)  
+}
 
+function secuenciaAtaque() {
+    botones.forEach((boton) =>{
+        boton.addEventListener('click', (e) =>{
+            if (e.target.textContent === '🪨') {
+                ataqueJugador.push('PIEDRA')
+                console.log(ataqueJugador)
+                boton.style.background = 'GRAY'
+            }else if (e.target.textContent === '📜') {
+                    ataqueJugador.push('PAPEL')
+                    console.log(ataqueJugador)
+                    boton.style.background = 'GRAY'
+                }else{
+                    ataqueJugador.push('TIJERA')
+                    console.log(ataqueJugador)
+                    boton.style.background = 'GRAY'
+                }
+                
+        })
+    })
 }
 
 function seleccionarPjEnemigo() {
     let pjAleatorio = aleatorio(0, personajes.length -1)
 
-    spanPjEnemigo.innerHTML = personajes[pjAleatorio].id
+    spanPjEnemigo.innerHTML = personajes[pjAleatorio].nombre
+    secuenciaAtaque()
 }
 
-function ataquePiedra() {
-    ataqueJugador = 'PIEDRA'
-    ataqueAleatorioEnemigo()
-}
-function ataquePapel() {
-    ataqueJugador = 'PAPEL'
-    ataqueAleatorioEnemigo()
-}
-function ataqueTijera() {
-    ataqueJugador = 'TIJERA'
-    ataqueAleatorioEnemigo()
-}
 
 function ataqueAleatorioEnemigo() {
     let ataqueAleatorio = aleatorio(1,3)
