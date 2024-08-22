@@ -3,10 +3,8 @@
 const sectionSeleccionAtaques = document.getElementById('seleccionar-ataque')
 const botonPj = document.getElementById('boton-pj')
 const sectionReiniciar = document.getElementById('reiniciar')
-const botonOvidio = document.getElementById('boton-piedra')
-const botonConrado = document.getElementById('boton-papel')
-const botonElvira = document.getElementById('boton-tijera')
 const botonReiniciar = document.getElementById('boton-reiniciar')
+
 
 //variables seleccionar PJ
 const sectionSeleccionPj = document.getElementById('seleccionar-pj')
@@ -26,6 +24,7 @@ const ataquePjEnemigo =  document.getElementById('ataque-Pj-enemigo')
 
 //variables traidas desde html
 const contenedorTarjetas = document.getElementById('contenedorTarjetas')
+const contenedorAtaques = document.getElementById('contenedorAtaques')
 
 //variables resultado (final) 
 
@@ -38,9 +37,14 @@ let vidasPjEnemigo = 3
 //
 let opcionPjs
 let pjJugador
+let ataquesPj
 let inputOvidio
 let inputConrado
 let inputElvira
+let botonPiedra
+let botonPapel 
+let botonTijera
+
 
 
 class Personaje {
@@ -99,9 +103,6 @@ function iniciarJuego() {
 
     botonPj.addEventListener('click', seleccionarPj)
     sectionReiniciar.style.display = 'none'
-    botonOvidio.addEventListener('click', ataqueOvidio)
-    botonConrado.addEventListener('click', ataqueConrado)
-    botonElvira.addEventListener('click', ataqueElvira)   
     botonReiniciar.addEventListener('click', reiniciarJuego)
 
 }
@@ -139,22 +140,41 @@ function extraerAtaques(pjJugador){
     mostrarAtaques(ataques)
 }
 
-function seleccionarPjEnemigo() {
-    let pjAleatoria = aleatorio(0, personajes.length -1)
+function mostrarAtaques(ataques){
+    ataques.forEach((ataque) => {
+        ataquesPj = `
+            <button id=${ataque.id} class="boton-ataque" >${ataque.nombre}</button>
+        `
 
-    spanPjEnemigo.innerHTML = personajes[pjAleatoria].nombre
-   
+        contenedorAtaques.innerHTML += ataquesPj
+    })
+
+    botonPiedra = document.getElementById('boton-piedra')
+    botonPapel = document.getElementById('boton-papel')
+    botonTijera = document.getElementById('boton-tijera')
+
+
+    botonPiedra.addEventListener('click', ataquePiedra)
+    botonPapel.addEventListener('click', ataquePapel)
+    botonTijera.addEventListener('click', ataqueTijera)  
+
 }
 
-function ataqueOvidio() {
+function seleccionarPjEnemigo() {
+    let pjAleatorio = aleatorio(0, personajes.length -1)
+
+    spanPjEnemigo.innerHTML = personajes[pjAleatorio].id
+}
+
+function ataquePiedra() {
     ataqueJugador = 'PIEDRA'
     ataqueAleatorioEnemigo()
 }
-function ataqueConrado() {
+function ataquePapel() {
     ataqueJugador = 'PAPEL'
     ataqueAleatorioEnemigo()
 }
-function ataqueElvira() {
+function ataqueTijera() {
     ataqueJugador = 'TIJERA'
     ataqueAleatorioEnemigo()
 }
