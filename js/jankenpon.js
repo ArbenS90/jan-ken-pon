@@ -30,7 +30,7 @@ const contenedorAtaques = document.getElementById('contenedorAtaques')
 
 let personajes = []
 let ataqueJugador = []
-let ataqueEnemigo
+let ataqueEnemigo = []
 let resultado
 let vidasPj = 3
 let vidasPjEnemigo = 3
@@ -38,6 +38,7 @@ let vidasPjEnemigo = 3
 let opcionPjs
 let pjJugador
 let ataquesPj
+let ataquesPjEnemigo
 let inputOvidio
 let inputConrado
 let inputElvira
@@ -175,30 +176,32 @@ function secuenciaAtaque() {
                     console.log(ataqueJugador)
                     boton.style.background = 'GRAY'
                 }
-                
+                ataqueAleatorioEnemigo()                
         })
     })
+    
 }
 
 function seleccionarPjEnemigo() {
     let pjAleatorio = aleatorio(0, personajes.length -1)
 
     spanPjEnemigo.innerHTML = personajes[pjAleatorio].nombre
+    ataquesPjEnemigo = personajes[pjAleatorio].ataques
     secuenciaAtaque()
 }
 
 
 function ataqueAleatorioEnemigo() {
-    let ataqueAleatorio = aleatorio(1,3)
+    let ataqueAleatorio = aleatorio(0,ataquePjEnemigo.length -1)
     
-    if (ataqueAleatorio == 1) {
-        ataqueEnemigo = 'PIEDRA'
-    } else if (ataqueAleatorio == 2) {
-        ataqueEnemigo = 'PAPEL'
+    if (ataqueAleatorio == 0) {
+        ataqueEnemigo.push('PIEDRA')
+    } else if (ataqueAleatorio == 1) {
+        ataqueEnemigo.push('PAPEL')
     } else {
-        ataqueEnemigo = 'TIJERA'
+        ataqueEnemigo.push('TIJERA')
     }
-
+    console.log(ataqueEnemigo);
     Duelo() 
 }
 
