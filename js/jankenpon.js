@@ -46,6 +46,8 @@ let botonPiedra
 let botonPapel 
 let botonTijera
 let botones = []
+let indexAtaqueJugador
+let indexAtaqueEnemigo
 
 
 
@@ -202,33 +204,28 @@ function ataqueAleatorioEnemigo() {
         ataqueEnemigo.push('TIJERA')
     }
     console.log(ataqueEnemigo);
-    Duelo() 
+    iniciarPelea()
+}
+
+function iniciarPelea() {
+    if (ataqueJugador.length === 3) {
+        Duelo() 
+    }
+}
+
+function indexAmbosOponentes(jugador, enemigo) {
+    indexAtaqueJugador = ataqueEnemigo[jugador]
+    indexAtaqueEnemigo = ataqueEnemigo[enemigo]
 }
 
 function Duelo() {
 
-        if (ataqueJugador == ataqueEnemigo) {
+    for (let index = 0; index < ataqueJugador.length; index++) {
+        if (ataqueJugador[index] === ataqueEnemigo[index]) {
+            indexAmbosOponentes(index, index)
             crearMensaje('EMPATARON')
-        } else if ((ataqueJugador == 'PAPEL' && ataqueEnemigo == 'PIEDRA') ||
-                   (ataqueJugador == 'PIEDRA' && ataqueEnemigo == 'TIJERA') ||
-                   (ataqueJugador == 'TIJERA' && ataqueEnemigo == 'PAPEL')) {
-            crearMensaje('GANASTE!')
-            vidasPjEnemigo--
-            if (vidasPjEnemigo == 1) {
-                spanVidasEnemigo.innerHTML = vidasPjEnemigo + " vida"
-            }else{
-                spanVidasEnemigo.innerHTML = vidasPjEnemigo + " vidas"
-            }
-            
-        } else {
-            crearMensaje('PERDISTE!')
-            vidasPj--
-            if (vidasPj == 1) {
-                spanVidasPj.innerHTML = vidasPj + " vida"
-            }else{
-                spanVidasPj.innerHTML = vidasPj + " vidas"
-            }            
         }
+    }
         vidasPjs()
 }
 
@@ -247,8 +244,8 @@ function crearMensaje(resultado) {
     let nuevoAtaquePjEnemigo = document.createElement('p')
 
     sectionMensajes.innerHTML = resultado
-    nuevoAtaquePj.innerHTML = "Usaste: " + ataqueJugador
-    nuevoAtaquePjEnemigo.innerHTML = "Uso: " + ataqueEnemigo
+    nuevoAtaquePj.innerHTML = indexAtaqueJugador
+    nuevoAtaquePjEnemigo.innerHTML = indexAtaqueEnemigo
     
     ataquePj.appendChild(nuevoAtaquePj)
     ataquePjEnemigo.appendChild(nuevoAtaquePjEnemigo)
