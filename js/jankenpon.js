@@ -46,11 +46,8 @@ let botonPiedra
 let botonPapel 
 let botonTijera
 let botones = []
-let indexAtaqueJugador
-let indexAtaqueEnemigo
-
-
-
+// let indexAtaqueJugador
+// let indexAtaqueEnemigo
 
 class Personaje {
     constructor(nombre, foto, vida) {
@@ -64,8 +61,6 @@ class Personaje {
 let Ovidio = new Personaje('Don Ovidio', './img/don-ovidio.png', 3)
 let Conrado = new Personaje('Conrado Horacio', './img/conrado-horacio.png', 3)
 let Elvira = new Personaje('Clara Elvira', '/img/clara-elvira.png', 3)
-
-//personajes.push(Ovidio,Conrado,Elvira)
 
 Ovidio.ataques.push(
     { nombre: '🪨', id: 'boton-piedra'},
@@ -88,8 +83,8 @@ Elvira.ataques.push(
 personajes.push(Ovidio,Conrado,Elvira)
 
 function iniciarJuego() {
-
     sectionSeleccionAtaques.style.display = 'none'
+
 
     personajes.forEach((Personaje) => {
         opcionPjs = `
@@ -102,8 +97,8 @@ function iniciarJuego() {
     contenedorTarjetas.innerHTML += opcionPjs
 
         inputOvidio = document.getElementById('DonOvidio')
-        inputConrado = document.getElementById('Conrado')
-        inputElvira = document.getElementById('Elvira')
+        inputConrado = document.getElementById('ConradoHoracio')
+        inputElvira = document.getElementById('ClaraElvira')
     })
 
     botonPj.addEventListener('click', seleccionarPj)
@@ -121,17 +116,18 @@ function seleccionarPj() {
         spanPjJugador.innerHTML = inputOvidio.name
         pjJugador = inputOvidio.name
     } else if (inputConrado.checked) {
-        spanPjJugador.innerHTML = inputConrado.id
-        pjJugador = inputConrado.id
+        spanPjJugador.innerHTML = inputConrado.name
+        pjJugador = inputConrado.name
     } else if (inputElvira.checked) {
-        spanPjJugador.innerHTML = inputElvira.id
-        pjJugador = inputElvira.id
+        spanPjJugador.innerHTML = inputElvira.name
+        pjJugador = inputElvira.name
     } else {
         alert('Seleccione un Personaje')
         return;
     }
     extraerAtaques(pjJugador)
     seleccionarPjEnemigo()
+
 }
 
 function extraerAtaques(pjJugador){
@@ -157,7 +153,6 @@ function mostrarAtaques(ataques){
     botonPiedra = document.getElementById('boton-piedra')
     botonPapel = document.getElementById('boton-papel')
     botonTijera = document.getElementById('boton-tijera')
-
     botones = document.querySelectorAll('.btnAtaque')
 
 }
@@ -167,18 +162,14 @@ function secuenciaAtaque() {
         boton.addEventListener('click', (e) =>{
             if (e.target.textContent === '🪨') {
                 ataqueJugador.push('PIEDRA')
-                console.log(ataqueJugador)
-                boton.style.background = 'GRAY'
+                
             }else if (e.target.textContent === '📜') {
                     ataqueJugador.push('PAPEL')
-                    console.log(ataqueJugador)
-                    boton.style.background = 'GRAY'
+
                 }else{
                     ataqueJugador.push('TIJERA')
-                    console.log(ataqueJugador)
-                    boton.style.background = 'GRAY'
                 }
-                ataqueAleatorioEnemigo()                
+                ataqueAleatorioEnemigo()       
         })
     })
     
@@ -195,7 +186,6 @@ function seleccionarPjEnemigo() {
 
 function ataqueAleatorioEnemigo() {
     let ataqueAleatorio = aleatorio(0,ataquePjEnemigo.length -1)
-    
     if (ataqueAleatorio == 0) {
         ataqueEnemigo.push('PIEDRA')
     } else if (ataqueAleatorio == 1) {
@@ -203,28 +193,26 @@ function ataqueAleatorioEnemigo() {
     } else {
         ataqueEnemigo.push('TIJERA')
     }
-    console.log(ataqueEnemigo);
+
     iniciarPelea()
+    
 }
 
 function iniciarPelea() {
     if (ataqueJugador.length === 3) {
-        Duelo() 
+        Duelo()
+
     }
 }
 
-function indexAmbosOponentes(jugador, enemigo) {
-    indexAtaqueJugador = ataqueEnemigo[jugador]
-    indexAtaqueEnemigo = ataqueEnemigo[enemigo]
-}
+// function indexAmbosOponentes(jugador, enemigo) {
+//     indexAtaqueJugador = ataqueEnemigo[jugador]
+//     indexAtaqueEnemigo = ataqueEnemigo[enemigo]
+// }
 
 function Duelo() {
-
     for (let index = 0; index < ataqueJugador.length; index++) {
-        if (ataqueJugador[index] === ataqueEnemigo[index]) {
-            indexAmbosOponentes(index, index)
-            crearMensaje('EMPATARON')
-        }
+
     }
         vidasPjs()
 }
